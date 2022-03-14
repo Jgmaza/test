@@ -12,7 +12,7 @@
 
 <body>
     <div style="padding: 20px;">
-        <div class="row" style="height: 350px;">
+        <div class="row">
             <table class="table table-sm table-hover table-dark col-5">
                 <thead>
                     <tr>
@@ -33,32 +33,18 @@
                 </tbody>
             </table>
             <div class="col">
-                <form action="POST">
-                    <div id="bodym">
-                        <div class="card text-center" style="height: 90%;">
+                <form method="POST" action="">
 
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <p class="card-text">Local:</p>
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="input-group mb-3">
-                                            <select class="custom-select" name="e-loc" required>
-                                                <option value="">Escoge un equipo</option>
-                                                {% for equipo in equipos %}
-                                                <option value="{{equipo.id + 1}}">{{equipo.nombre}}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
+                    <div class="card text-center" >
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="card-text">Local:</p>
                                 </div>
-                                <div class="row" style="margin-top: 10px;">
-                                    <div class="col-4">
-                                        <p class="card-text">Vistante:</p>
-                                    </div>
-                                    <div class="col-8">
-                                        <select class="custom-select" name="e-vis" required>
+                                <div class="col-8">
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" name="e-loc" required>
                                             <option value="">Escoge un equipo</option>
                                             {% for equipo in equipos %}
                                             <option value="{{equipo.id + 1}}">{{equipo.nombre}}</option>
@@ -66,27 +52,43 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row" style="margin-top: 20px;">
-                                    <div class="col-3">
-                                        <p class="card-text">Loc:</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="number" name="loc" style="display: inline-block; width: 100%;" required>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="card-text">Vis:</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="number" name="vis" style="display: inline-block; width: 100%;" required>
-                                    </div>
-
-
-                                </div>
-                                <input style="margin-top: 30px;" type="submit" id="btmodal" class="btn btn-primary"
-                                    value="Agregar resultado">
                             </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-4">
+                                    <p class="card-text">Vistante:</p>
+                                </div>
+                                <div class="col-8">
+                                    <select class="custom-select" name="e-vis" required>
+                                        <option value="">Escoge un equipo</option>
+                                        {% for equipo in equipos %}
+                                        <option value="{{equipo.id + 1}}">{{equipo.nombre}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-3">
+                                    <p class="card-text">Loc:</p>
+                                </div>
+                                <div class="col-3">
+                                    <input type="number" name="loc" style="display: inline-block; width: 100%;"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text">Vis:</p>
+                                </div>
+                                <div class="col-3">
+                                    <input type="number" name="vis" style="display: inline-block; width: 100%;"
+                                        required>
+                                </div>
+
+
+                            </div>
+                            <input style="margin-top: 30px;" type="submit" class="btn btn-primary"
+                                value="Agregar resultado">
                         </div>
                     </div>
+
                 </form>
             </div>
             <table class="table table-sm table-hover table-dark col-4">
@@ -112,99 +114,142 @@
                 </tbody>
             </table>
         </div>
-        <div class="row" style="height: 350px;">
+        <div class="row">
             <div class="col">
-                <div class="card text-center" style="height: 90%;">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <p class="card-text">Local:</p>
-                            </div>
-                            <div class="col-6">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Equipo
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        {% for equipo in equipos %}
-                                        <a class="dropdown-item" href="#">{{equipo.nombre}}</a>
-                                        {% endfor %}
+                <form method="POST" action="">
+
+                    <div class="card text-right">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="card-text">Nombre:</p>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" name="nombre" style="display: inline-block; width: 100%;"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text">Equipo:</p>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" name="equipo" required>
+                                            <option value="">Escoge un equipo</option>
+                                            {% for equipo in equipos %}
+                                            <option value="{{equipo.id + 1}}">{{equipo.nombre}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row" style="margin-top: 10px;">
-                            <div class="col-4">
-                                <p class="card-text">Vistante:</p>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-3">
+                                    <p class="card-text">Edad:</p>
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" name="edad" style="display: inline-block; width: 100%;"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text">Sueldo:</p>
+                                </div>
+                                <div class="col">
+                                    <input type="number" name="sueldo" style="display: inline-block; width: 100%;"
+                                        required>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false" style="width: 100%;">
-                                        Equipo
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        {% for equipo in equipos %}
-                                        <a class="dropdown-item" href="#">{{equipo.nombre}}</a>
-                                        {% endfor %}
-                                    </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-3">
+                                    <p class="card-text">TR</p>
+                                </div>
+                                <div class="col-3">
+                                    <input type="number" name="tr" style="display: inline-block; width: 100%;" required>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text">TA</p>
+                                </div>
+                                <div class="col-3">
+                                    <input type="number" name="ta" style="display: inline-block; width: 100%;" required>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-3">
+                                    <p class="card-text">Goles</p>
+                                </div>
+                                <div class="col-3">
+                                    <input type="number" name="goles" style="display: inline-block; width: 100%;"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text">PJ</p>
+                                </div>
+                                <div class="col-3">
+                                    <input type="number" name="pj" style="display: inline-block; width: 100%;" required>
                                 </div>
                             </div>
 
+                            <input style="margin-top: 30px;" type="submit" class="btn btn-primary" value="Enviar">
                         </div>
                     </div>
-                </div>
+
+                </form>
             </div>
             <div class="col">
-                <div class="card text-center" style="height: 90%;">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-text">Local:</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="card-text">Ciudad:</p>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Ciudad
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        {% for equipo in ciudades %}
-                                        <a class="dropdown-item" href="#">{{equipo.nombre}}</a>
-                                        {% endfor %}
+                <form method="POST" action="">
+
+                    <div class="card text-right" style="height: 90%;">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="card-text">Nombre:</p>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" name="nombre" style="display: inline-block; width: 100%;"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text">Ciudad:</p>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" name="ciudad" required>
+                                            <option value="">Escoge una ciudad</option>
+                                            {% for equipo in ciudades %}
+                                            <option value="{{equipo.id + 1}}">{{equipo.nombre}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row" style="margin-top: 10px;">
-                            <div class="col-4">
-                                <p class="card-text">Vistante:</p>
-                            </div>
-                            <div class="col-6">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false" style="width: 100%;">
-                                        Equipo
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        {% for equipo in equipos %}
-                                        <a class="dropdown-item" href="#">{{equipo.nombre}}</a>
-                                        {% endfor %}
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-4">
+                                    <p class="card-text">Jugadores:</p>
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" name="num_jugadores"
+                                        style="display: inline-block; width: 100%;" required>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text">División:</p>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" name="division" required>
+                                            <option value="">Escoge una división</option>
+                                            {% for equipo in divisiones %}
+                                            <option value="{{equipo.id + 1}}">{{equipo.nombre}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-
+                            <input style="margin-top: 30px;" type="submit" class="btn btn-primary" value="Enviar">
                         </div>
                     </div>
-                </div>
+
+                </form>
             </div>
             <table class="table table-sm table-hover table-dark col-5">
                 <thead>
