@@ -43,7 +43,7 @@ def index():
                 try:
                     equipo = int(request.form['equipo']) - 1
                     e = Equipo.query.filter(Equipo.id == equipo).one()
-                    e.num_jugadores += 1 
+                    e.num_jugadores += 1
                     db.session.merge(e)
                     db.session.commit()
                     nombre = (request.form['nombre'])
@@ -64,8 +64,42 @@ def index():
                 except:
                     print("F")
 
-    jugadores1 = Jugador.query.all()
+    partidos1 = Partido.query.all()
     equipos1 = Equipo.query.all()
+    puntoEquipo = []
+    for e in equipos1:
+        pj = 0
+        pg = 0
+        pp = 0
+        pe = 0
+        goles= 0
+        for i in partidos1:
+            if i.equipo_local == e.id:
+                pj += 1
+                if i.goles_local > i.goles_visitante:
+                    pg += 1
+                    goles += i.goles_local
+                elif i.goles_local < i.goles_visitante:
+                    pp += 1
+                else:
+                    pe +=1
+            elif i.equipo_visitante == e.id:
+                pj += 1
+                if i.goles_local > i.goles_visitante:
+                    pp += 1                   
+                elif i.goles_local < i.goles_visitante:
+                    pg += 1
+                    goles += i.goles_local
+                else:
+                    pe +=1
+            
+
+        puntoEquipo.append({"nombre": e.nombre, "pj": pj,
+                           "pg": pg, "pp": pp, "goles":goles,"puntos": 3*pg + pe})
+    puntoEquipo = sorted(puntoEquipo, key=lambda x: x["puntos"], reverse=True)
+
+    jugadores1 = Jugador.query.all()
+
     equipos = []
     jugadores = []
     for e in equipos1:
@@ -79,7 +113,7 @@ def index():
                           "goles": e.goles, "pj": e.pj})
     ciudades = Ciudad.query.all()
     divisiones = Division.query.all()
-    return render_template('index.html', divisiones=divisiones, ciudades=ciudades, equipos=equipos, jugadores=jugadores)
+    return render_template('index.html', puntoEquipo=puntoEquipo, divisiones=divisiones, ciudades=ciudades, equipos=equipos, jugadores=jugadores)
 
 
 app.register_blueprint(m)
