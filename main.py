@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-from pickle import BININT
 from models import *
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, Blueprint, render_template, request
